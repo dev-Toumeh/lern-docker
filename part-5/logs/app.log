@@ -1,0 +1,6 @@
+[2025-02-11T16:55:55.065248+00:00] RequestHandler.INFO: Received request {"method":"GET"} []
+[2025-02-11T16:55:55.065511+00:00] RequestHandler.INFO: Handling path {"path":"/"} []
+[2025-02-11T16:56:09.245966+00:00] RequestHandler.INFO: Received request {"method":"POST"} []
+[2025-02-11T16:56:09.246075+00:00] RequestHandler.INFO: Handling path {"path":"/"} []
+[2025-02-11T16:56:10.746342+00:00] RequestHandler.INFO: Received request {"method":"POST"} []
+[2025-02-11T16:56:10.746398+00:00] RequestHandler.INFO: Handling path {"path":"/"} []

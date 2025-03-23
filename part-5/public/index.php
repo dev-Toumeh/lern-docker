@@ -6,7 +6,7 @@ use App\Database;
 use App\RequestHandler;
 
 // Initialize the Database
-$database = new Database('mariadb1', 'root', '1234', 'my-first-project');
+$database = new Database('mariadb', 'root', '1234', 'todo');
 
 // Ensure the Tasks table exists
 $database->ensureTasksTableExists();

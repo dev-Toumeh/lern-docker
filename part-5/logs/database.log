@@ -1,0 +1,3 @@
+[2025-02-11T16:55:54.997077+00:00] Database.INFO: Connected to database {"dsn":"mysql:host=mariadb;dbname=todo;charset=utf8mb4"} []
+[2025-02-11T16:56:09.237431+00:00] Database.INFO: Connected to database {"dsn":"mysql:host=mariadb;dbname=todo;charset=utf8mb4"} []
+[2025-02-11T16:56:10.741931+00:00] Database.INFO: Connected to database {"dsn":"mysql:host=mariadb;dbname=todo;charset=utf8mb4"} []

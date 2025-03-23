@@ -13,7 +13,6 @@ RUN install-php-extensions @composer pdo_mysql intl zip
 
 RUN composer install
 
-RUN chmod -R 755 .
+RUN chmod -R 777 .
 
 RUN service apache2 restart
-
