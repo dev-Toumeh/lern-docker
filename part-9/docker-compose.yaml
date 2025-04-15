@@ -1,0 +1,33 @@
+services:
+
+  apache:
+    build:
+      context: .
+      dockerfile: ./docker/apache/Dockerfile
+      target: production
+    container_name: todo-apache
+    ports:
+      - "8090:80"
+ 
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      target: production
+    container_name: todo-php
+
+  db:
+    image: mariadb
+    container_name: todo-database
+    ports:
+      - "3306:3306"
+    volumes:
+      - todo-volume:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: 1234
+      MARIADB_DATABASE: todo
+      MARIADB_USER: my-user
+      MARIADB_PASSWORD: 1234
+
+volumes:
+  todo-volume:
