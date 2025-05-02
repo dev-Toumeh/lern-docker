@@ -1,0 +1,42 @@
+services:
+
+  apache:
+    build:
+      context: .
+      dockerfile: ./docker/apache/Dockerfile
+      target: production
+    container_name: todo-apache
+    ports:
+      - "8090:80"
+ 
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      target: production
+    container_name: todo-php
+
+  db:
+    image: mariadb
+    container_name: todo-database
+    ports:
+      - "3306:3306"
+    volumes:
+      - todo-volume:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_DATABASE}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.2
+    container_name: todo-phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: ${DB_HOST}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+volumes:
+  todo-volume:

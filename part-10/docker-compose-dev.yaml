@@ -1,0 +1,52 @@
+services:
+
+  apache:
+    build:
+      context: .
+      dockerfile: ./docker/apache/Dockerfile
+      target: development
+    container_name: todo-apache
+    ports:
+      - "8090:80"
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
+      - ./docker/apache/conf/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+      target: development
+    container_name: todo-php
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/conf/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    extra_hosts:
+      host.docker.internal: host-gateway
+    environment:
+      XDEBUG_MODE: debug
+
+  db:
+    image: mariadb
+    container_name: todo-database
+    ports:
+      - "3306:3306"
+    volumes:
+      - todo-volume:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_DATABASE}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.2
+    container_name: todo-phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: ${DB_HOST}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+volumes:
+  todo-volume:
